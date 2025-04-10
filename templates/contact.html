@@ -1,0 +1,98 @@
+<!-- templates/contact.html -->
+{% extends "base.html" %}
+
+{% block title %}Contact | Portfolio Website{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="text-center mb-4">Get In Touch</h1>
+                <div class="contact-form shadow">
+                    <form action="{{ url_for('contact') }}" method="POST" onsubmit="return validateForm()">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                            <div class="invalid-feedback">Please enter your name.</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="subject" name="subject" required>
+                            <div class="invalid-feedback">Please enter a subject.</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="6" maxlength="500" required></textarea>
+                            <div class="invalid-feedback">Please enter your message (max 500 characters).</div>
+                            <div class="form-text text-end"><span id="charCount">0</span>/500 characters</div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Update character count for message field
+    document.getElementById('message').addEventListener('input', function() {
+        const charCount = this.value.length;
+        document.getElementById('charCount').textContent = charCount;
+    });
+    
+    // Form validation
+    function validateForm() {
+        let valid = true;
+        const form = document.querySelector('form');
+        
+        // Clear previous validation
+        form.querySelectorAll('.is-invalid').forEach(field => {
+            field.classList.remove('is-invalid');
+        });
+        
+        // Validate name
+        const name = document.getElementById('name');
+        if (!name.value.trim()) {
+            name.classList.add('is-invalid');
+            valid = false;
+        }
+        
+        // Validate email
+        const email = document.getElementById('email');
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email.value)) {
+            email.classList.add('is-invalid');
+            valid = false;
+        }
+        
+        // Validate subject
+        const subject = document.getElementById('subject');
+        if (!subject.value.trim()) {
+            subject.classList.add('is-invalid');
+            valid = false;
+        }
+        
+        // Validate message
+        const message = document.getElementById('message');
+        if (!message.value.trim() || message.value.length > 500) {
+            message.classList.add('is-invalid');
+            valid = false;
+        }
+        
+        return valid;
+    }
+</script>
+{% endblock %}

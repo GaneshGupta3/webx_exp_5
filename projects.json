@@ -1,0 +1,21 @@
+[
+    {
+      "title": "EventEase",
+      "description": "An event planning platform for seamless vendor coordination.",
+      "image": "static/eventease.jpg",
+      "link": "https://github.com/GaneshGupta3/EventEase"
+    },
+    {
+      "title": "EduValt",
+      "description": "Document storage and admission management system.",
+      "image": "static/eduvault.png",
+      "link": "https://github.com/GaneshGupta3/eduvault"
+    },
+    {
+      "title": "Solve Together",
+      "description": "Collaborative problem-solving , developing web applications for Industry level practice.",
+      "image": "static/synergysolver.jpg",
+      "link": "https://github.com/GaneshGupta3/synergysolver"
+    }
+  ]
+  

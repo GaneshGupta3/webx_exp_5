@@ -1,0 +1,44 @@
+<!-- templates/portfolio.html -->
+{% extends "base.html" %}
+
+{% block title %}Portfolio | Portfolio Website{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">My Projects</h1>
+        
+        <div class="row">
+            {% for project in projects %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border rounded shadow-sm">
+                    <!-- Project Image -->
+                    <img src="{{ project.image }}" class="card-img-top" alt="{{ project.title }}" style="height: 220px; object-fit: cover;">
+                    
+                    <div class="card-body d-flex flex-column">
+                        <!-- Project Title -->
+                        <h3 class="card-title">{{ project.title }}</h3>
+                        
+                        <!-- Project Description -->
+                        <p class="card-text mb-4">{{ project.description }}</p>
+                        
+                        <!-- Technology Tags -->
+                        <div class="mb-4">
+                            {% for tech in project.technologies %}
+                            <span class="badge bg-secondary me-1 mb-1 p-2">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <!-- Project Links -->
+                        <div class="mt-auto d-flex justify-content-between">
+                            <a href="{{ project.github }}" class="btn btn-outline-dark" target="_blank">GitHub</a>
+                            <a href="{{ project.live_demo }}" class="btn btn-primary" target="_blank">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
